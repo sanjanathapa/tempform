@@ -1,0 +1,61 @@
+<mat-card>
+  <mat-toolbar>Reactive-form</mat-toolbar>
+  <form [formGroup]="RegisterForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input
+      type="text"
+      matInput placeholder="enter your name"
+      formControlName="name"
+      [ngClass]="{'is-invalid':submitted && f.name.errors}">
+      </mat-form-field>
+      <mat-error *ngIf="submitted && f.name.errors ">
+        <mat-error *ngIf="f.name.errors?.required">name should be entered</mat-error>
+
+      </mat-error>
+      <br><br>
+
+  <mat-form-field>
+    <input
+    type="text"
+    matInput placeholder="enter your email"
+    FormControlName="email">
+    </mat-form-field>
+
+    <br><br>
+    <mat-form-field>
+      <mat-select formControlName="location" placeholder="location">
+      <mat-option value="chandigarh">Chandigarh</mat-option>
+      <mat-option value="Jalandhar">Jalandhar</mat-option>
+      <mat-option value="Mohali">Mohali</mat-option>
+      <mat-option value="Punjab">Punjab</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br><br>
+
+    <mat-form-field>
+      <input
+      type="password"
+      placeholder="password"
+    formControlName="password">
+      </mat-form-field>
+      <br><br>
+
+      <mat-form-field>
+        <input
+        type="password"
+        matInput
+        placeholder="confirm your password"
+        formControlName="confirmpassword"
+        [ngClass]>
+      </mat-form-field>
+
+      <br><br>
+      <mat-form-field>
+        <mat-checkbox name= "terms"
+        formControlName="terms">
+
+        </mat-checkbox>
+      </mat-form-field>
+  </form>
+</mat-card>

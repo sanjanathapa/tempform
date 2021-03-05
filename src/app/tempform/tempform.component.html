@@ -1,0 +1,146 @@
+<mat-card>
+  <mat-toolbar>Template-Form</mat-toolbar>
+
+<br><br>
+<form #registerForm="ngForm" name="form" (ngSubmit)="registerForm.form.valid && onSubmit(registerForm)">
+    <mat-form-field>
+      <input
+      type="text"
+      matInput
+      placeholder="Enter your name"
+      name="username"
+      #username="ngModel"
+      [(ngModel)]="model.username"
+      required
+      [ngClass]="{'is-invalid':registerForm.submitted && username.invalid}"
+      >
+      </mat-form-field>
+
+      <mat-error *ngIf="registerForm.submitted && username.invalid">
+        <mat-error *ngIf="username.errors?.required">
+          Name should be entered
+        </mat-error>
+
+      </mat-error>
+
+      <br> <br>
+      <mat-form-field>
+        <input
+        type="text"
+        matInput placeholder="enter your email"
+        name="useremail"
+        #useremail="ngModel"
+        email
+        [(ngModel)]="model.useremail"
+        required
+        [ngClass]="{'is-invalid':registerForm.submitted && useremail.invalid}"
+        >
+    </mat-form-field>
+    <mat-error *ngIf="registerForm.submitted && useremail.invalid">
+      <mat-error *ngIf="useremail.errors?.required">
+        Email is required
+      </mat-error>
+
+      <mat-error *ngIf="useremail.errors?.email">
+        Should be in email format
+      </mat-error>
+    </mat-error>
+
+    <br><br>
+
+    <mat-form-field>
+      <mat-select
+      placeholder="Location"
+      name="location"
+      #location="ngModel"
+      [(ngModel)]="model.location"
+      required
+      [ngClass]="{'is-invalid':registerForm.submitted && location.invalid}"
+      >
+      <mat-option value="chandigarh">Chandigarh</mat-option>
+      <mat-option value="Jalandhar">Jalandhar</mat-option>
+      <mat-option value="Mohali">Mohali</mat-option>
+      <mat-option value="punjab">punjab</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-error *ngIf="registerForm.submitted && location.invalid">
+      <mat-error *ngIf="location.errors?.required">Select the location
+
+      </mat-error>
+    </mat-error>
+
+
+    <br><br>
+
+    <mat-form-field>
+      <input
+       type="password"
+       matInput placeholder="enter password"
+      required
+      name="psw"
+      #psw="ngModel"
+      [(ngModel)]="model.psw"
+      [ngClass]="{'is-invalid':registerForm.submitted && psw.invalid}"
+      minlength=5
+      >
+      </mat-form-field>
+
+      <mat-error *ngIf="registerForm.submitted && psw.invalid">
+      <mat-error *ngIf="psw.errors?.required">
+        Password should be entered
+
+      </mat-error>
+      <mat-error *ngIf="psw.errors?.minlength">
+        Password should be greater than 5
+      </mat-error>
+      </mat-error>
+
+      <br><br>
+
+      <mat-form-field>
+        <input
+        type="password"
+        matInput placeholder="Confirm password"
+        required
+        name="cpsw"
+        #cpsw="ngModel"
+        [(ngModel)]="model.cpsw"
+        [ngClass]="{'is-invalid':registerForm.submitted && cpsw.invalid}"
+        pattern={{psw.value}}
+        >
+      </mat-form-field>
+
+
+  <mat-error *ngIf="registerForm.submitted && cpsw.invalid">
+    <mat-error *ngIf="cpsw.errors?.required">
+      Confirm password should be entered
+      </mat-error>
+
+      <mat-error *ngIf="cpsw.errors?.pattern">
+        Password and confirm password should match
+      </mat-error>
+  </mat-error>
+
+      <br><br>
+
+
+      <mat-checkbox
+      name="terms"
+      #terms="ngModel"
+      [(ngModel)]="model.terms"
+      required
+      [ngClass]="{'is-invalid':registerForm.submitted && terms.invalid}">Accept terms and conditions
+      </mat-checkbox>
+
+
+    <mat-error *ngIf="registerForm.submitted && terms.invalid">
+      <mat-error *ngIf="terms.errors?.required">
+       Accept terms
+        </mat-error>
+        </mat-error>
+
+      <br><br>
+<button type="submit" mat-raised-button color="accent">Submit</button>
+  </form>
+
+</mat-card>

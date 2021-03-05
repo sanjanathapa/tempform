@@ -1,0 +1,8 @@
+mata-card{
+  width:80%;
+  margin:auto;
+  background-color:tan !important;
+}
+mat-form-field,input{
+  width:100%;
+}
